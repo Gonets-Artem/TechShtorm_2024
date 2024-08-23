@@ -1,0 +1,10 @@
+names:
+- referee
+- team_1
+- team_2
+- gates
+- blue_lines_center
+nc: 5
+test: validation/images
+train: train/images
+validation: validation/images

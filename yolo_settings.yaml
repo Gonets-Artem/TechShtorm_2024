@@ -1,5 +1,0 @@
-train: /kaggle/input/techshtorm2024-hockey/data/train
-val: /kaggle/input/techshtorm2024-hockey/data/val
-
-nc: 3
-names: ['team_one', 'team_two', 'referee']
