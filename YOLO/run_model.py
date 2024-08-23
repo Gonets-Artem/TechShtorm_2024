@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 
 # Загрузка сохранённой модели
-model = YOLO('D:\\hackatonneft\\TechShtorm_2024\\YOLO\\yolov8s-obb.pt')
+model = YOLO('D:\\hackatonneft\\TechShtorm_2024\\YOLO\\runs\\obb\\train11\\weights\\best.pt')
 
 # Открытие видео
 video_path = "D:\\hackatonneft\\TechShtorm_2024\\data\\cleany\\keep\\red\\001_keep_red.mp4"
@@ -23,6 +23,7 @@ while cap.isOpened():
     
     # Получение аннотированного изображения
     annotated_frame = results[0].plot()
+    print(results[0])
 
     # Запись аннотированного кадра в выходное видео
     out.write(annotated_frame)
