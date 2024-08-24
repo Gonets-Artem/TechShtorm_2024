@@ -1,0 +1,9 @@
+train: ../train4/images
+val: ../val4/images
+
+nc: 4
+names: 
+  0: referee
+  1: team_1
+  2: team_2
+  3: gates
