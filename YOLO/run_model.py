@@ -2,7 +2,7 @@ from ultralytics import YOLO
 import cv2
 
 # Загрузка сохранённой модели
-model = YOLO('D:\\hackatonneft\\TechShtorm_2024\\YOLO\\runs\\obb\\train11\\weights\\best.pt')
+model = YOLO('D:\\hackatonneft\\TechShtorm_2024\\runs\\detect\\train8\\weights\\best.pt')
 
 # Открытие видео
 video_path = "D:\\hackatonneft\\TechShtorm_2024\\data\\cleany\\keep\\red\\001_keep_red.mp4"

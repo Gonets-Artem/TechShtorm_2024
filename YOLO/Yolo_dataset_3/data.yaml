@@ -1,5 +1,5 @@
 train: ../images/train
-validation: ../images/validation
+val: ../images/val
 
 nc: 4
 names: ['referee', 'team_1', 'team_2', 'gates']
