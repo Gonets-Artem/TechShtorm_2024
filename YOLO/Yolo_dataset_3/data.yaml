@@ -1,5 +1,5 @@
 train: ../images/train
 val: ../images/val
 
-nc: 4
-names: ['referee', 'team_1', 'team_2', 'gates']
+nc: 3
+names: ['referee', 'team_1', 'team_2']
