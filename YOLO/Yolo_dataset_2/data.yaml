@@ -1,0 +1,6 @@
+test: validation/images
+train: train/images
+validation: validation/images
+
+nc: 4
+names: ['referee', 'team_1', 'team_2', 'gates']
