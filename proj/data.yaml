@@ -1,9 +1,8 @@
-train: ../train_final/images
-val: ../val_final/images
+train: ../train_final/images/002_keep_green
+val: ../val_final/images/002_keep_green
 
 nc: 3
 names: 
   0: referee
   1: team_1
   2: team_2
-  
