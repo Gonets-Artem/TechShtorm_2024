@@ -1,5 +1,5 @@
-train: ../train_final/images/002_keep_green
-val: ../val_final/images/002_keep_green
+train: ../train_final/images/
+val: ../val_final/images/
 
 nc: 3
 names: 
