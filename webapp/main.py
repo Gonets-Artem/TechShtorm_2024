@@ -6,6 +6,16 @@ import plotly.graph_objects as go
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
+import torch
+from torchvision import transforms
+from PIL import Image
+import cv2
+from ultralytics import YOLO
+
+model_yolo = YOLO(f'best.pt')
+model_class = torch.load('model_effic4_2_layers')
+model_class.eval()
+
 
 class MyHandler(FileSystemEventHandler):
     def on_modified(self, event):
@@ -122,6 +132,20 @@ uploaded_file = st.file_uploader("Загрузите видео хоккейно
                                          accept_multiple_files=False)
 link = st.text_input("Или вставьте ссылку:", placeholder="https://example.com/not-youtube.mp4")
 
+
+def predict_class(start_image, model_class):
+    val_transforms = transforms.Compose([
+        transforms.Resize(360),
+        transforms.ToTensor(),
+        transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+    ])
+    img = val_transforms(Image.fromarray(start_image))
+    with torch.set_grad_enabled(False):
+        preds = model_class(img.unsqueeze(0))
+        result = torch.nn.functional.softmax(preds, dim=1)[:, 1].data.cpu().numpy()
+    return float(result[0])
+
+
 if uploaded_file is not None or link:
     if link:
         with st.spinner('Пожалуйста, подождите...'):
@@ -130,8 +154,16 @@ if uploaded_file is not None or link:
         st.write("Файл успешно загружен!")
     elif uploaded_file:
         bytes_data = uploaded_file.read()
-        st.video(bytes_data, autoplay=True, muted=True)
         st.write("Файл успешно загружен!")
+        cap = cv2.VideoCapture("./output-video.mp4")
+        while True:
+            ret, frame = cap.read()
+            if (not ret) or (cv2.waitKey(1) & 0xFF == ord('q')):
+                break
+            pred_class = predict_class(frame, model_class)
+            results = model_yolo(frame)
+            annotated_frame = results[0].plot()
+            st.video(annotated_frame)
     else:
         st.write("Что-то пошло не так")
 
