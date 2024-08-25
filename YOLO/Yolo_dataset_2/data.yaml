@@ -1,5 +1,0 @@
-train: ../train/images
-val: ../val/images
-
-nc: 4
-names: ['referee', 'team_1', 'team_2', 'gates']
